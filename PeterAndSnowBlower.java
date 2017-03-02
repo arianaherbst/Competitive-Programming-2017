@@ -30,7 +30,7 @@ public class PeterAndSnowBlower {
 			double smally = y[n];
 			double bigx = x[m];
 			double bigy = y[m];			
-			
+			int k = 0;
 			double dx, dy, x1, x2, y1, y2, dist1, dist2;
 			do {
 				dx = bigx - smallx;
@@ -49,9 +49,12 @@ public class PeterAndSnowBlower {
 					smally = y1;
 				}
 				
-			} while (Math.pow(x1 - x2,2) + Math.pow(y1 - y2, 2) > ((dist1 < dist2) ? Math.ulp(dist1) * 100 : Math.ulp(dist2) * 100 ) );
-			//Second term:    100*Math.ulp(Math.max(Math.abs(y1), Math.abs(y2))+Math.max(Math.abs(x1), Math.abs(x2))));
-			//^ also works.  Could also do a for loop for 200.
+			}//THIS ONE DOESN'T WORK// while (Math.pow(x1 - x2,2) + Math.pow(y1 - y2, 2) > // ((dist1 < dist2) ? Math.ulp(dist1) * 100 : Math.ulp(dist2) * 100 ) );
+			//THIS ONE WORKS  // 100*Math.ulp(Math.max(Math.abs(y1), Math.abs(y2))+Math.max(Math.abs(x1), Math.abs(x2))));
+			//For loop for 100+ for ternary search (or 60+ for binary search) is a good bet for everything except in which
+			//you have to find an answer within the relative error of a very small answer.
+			//But that doesn't really happen so basically always use a for-loop for binary and ternary searches.
+			while(k++ < 100);
 			min = Math.min(min, Math.pow(x1 - X, 2) + Math.pow(y1 - Y, 2));
 		}
 		double ans = Math.PI * (max-min);
